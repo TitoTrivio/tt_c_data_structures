@@ -25,3 +25,4 @@ int stack_push(Stack *stack, void *value);
 void *stack_pop(Stack *stack);
 
 #endif
+

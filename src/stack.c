@@ -48,7 +48,7 @@ void stack_free(Stack *stack)
 
 int stack_push(Stack *stack, void *value)
 {
-    if(stack->top + 1 >= size)
+    if(stack->top + 1 >= stack->size)
         return 0;
 
     stack->data[++stack->top] = value;
