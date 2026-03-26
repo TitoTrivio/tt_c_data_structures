@@ -1,20 +1,20 @@
 #include "stack.h"
 #include <stdlib.h>
 
-int stack_initialize(Stack *stack, int size)
+bool stack_initialize(Stack *stack, int size)
 {
     if(size < 0)
-        return 0;
+        return false;
 
     stack->data = malloc(size * sizeof(void*));
 
     if(!stack->data)
-        return 0;
+        return false;
 
     stack->top = -1;
     stack->size = size;
 
-    return 1;
+    return true;
 }
 
 void stack_finalize(Stack *stack)
@@ -58,14 +58,14 @@ void stack_free(Stack *stack)
     free(stack);
 }
 
-int stack_push(Stack *stack, void *value)
+bool stack_push(Stack *stack, void *value)
 {
     if(stack->top + 1 >= stack->size)
-        return 0;
+        return false;
 
     stack->data[++stack->top] = value;
 
-    return 1;
+    return true;
 }
 
 void *stack_pop(Stack *stack)
@@ -82,7 +82,7 @@ void *stack_pop(Stack *stack)
     return value;
 }
 
-int stack_push_int(Stack *stack, int value)
+bool stack_push_int(Stack *stack, int value)
 {
     int *ptr = (int*) malloc(sizeof(int));
     
@@ -91,7 +91,7 @@ int stack_push_int(Stack *stack, int value)
     return stack_push(stack, ptr);
 }
 
-int stack_push_char(Stack *stack, char value)
+bool stack_push_char(Stack *stack, char value)
 {
     char *ptr = (char*) malloc(sizeof(char));
     
@@ -100,7 +100,7 @@ int stack_push_char(Stack *stack, char value)
     return stack_push(stack, ptr);
 }
 
-int stack_push_float(Stack *stack, float value)
+bool stack_push_float(Stack *stack, float value)
 {
     float *ptr = (float*) malloc(sizeof(float));
     
@@ -109,7 +109,7 @@ int stack_push_float(Stack *stack, float value)
     return stack_push(stack, ptr);
 }
 
-int stack_push_double(Stack *stack, double value)
+bool stack_push_double(Stack *stack, double value)
 {
     double *ptr = (double*) malloc(sizeof(double));
     
@@ -118,7 +118,7 @@ int stack_push_double(Stack *stack, double value)
     return stack_push(stack, ptr);
 }
 
-int stack_push_str(Stack *stack, char *value)
+bool stack_push_str(Stack *stack, char *value)
 {
     return stack_push(stack, value);
 }
