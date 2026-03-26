@@ -6,7 +6,7 @@
 int main(void)
 {
     Stack stack;
-    stack_init(&stack, 10);
+    stack_initialize(&stack, 10);
 
     int *number = (int*) malloc(sizeof(int));
     char *text = (char*) malloc(12 * sizeof(char));
@@ -23,7 +23,7 @@ int main(void)
     printf("%s\n", text2);
     printf("%d\n", *number2);
 
-    stack_free(&stack);
+    stack_finalize(&stack);
     free(text2);
     free(number2);
     

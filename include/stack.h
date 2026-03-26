@@ -14,9 +14,11 @@ typedef struct _Stack Stack;
 
 // Stack functions
 
-Stack *stack_new(int size);
+int stack_initialize(Stack *stack, int size);
 
-int stack_init(Stack *stack, int size);
+void stack_finalize(Stack *stack);
+
+Stack *stack_new(int size);
 
 void stack_free(Stack *stack);
 

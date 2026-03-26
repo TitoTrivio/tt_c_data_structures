@@ -1,20 +1,7 @@
 #include "stack.h"
 #include <stdlib.h>
 
-Stack *stack_new(int size)
-{
-    Stack *stack = (Stack*) malloc(sizeof(Stack));
-
-    if(!stack_init(stack, size))
-    {
-        free(stack);
-	return NULL;
-    }
-
-    return stack;
-}
-
-int stack_init(Stack *stack, int size)
+int stack_initialize(Stack *stack, int size)
 {
     if(size < 0)
         return 0;
@@ -30,7 +17,7 @@ int stack_init(Stack *stack, int size)
     return 1;
 }
 
-void stack_free(Stack *stack)
+void stack_finalize(Stack *stack)
 {
     if(!stack)
         return;
@@ -42,6 +29,31 @@ void stack_free(Stack *stack)
 	
 	free(stack->data);
     }
+
+    stack->data = NULL;
+    stack->top = -1;
+    stack->size = 0;
+}
+
+Stack *stack_new(int size)
+{
+    Stack *stack = (Stack*) malloc(sizeof(Stack));
+
+    if(!stack_initialize(stack, size))
+    {
+        free(stack);
+	return NULL;
+    }
+
+    return stack;
+}
+
+void stack_free(Stack *stack)
+{
+    if(!stack)
+        return;
+    
+    stack_finalize(stack);
 
     free(stack);
 }
