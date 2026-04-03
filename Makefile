@@ -10,27 +10,27 @@ endif
 
 CC=gcc
 
-SRCDIRS=./src
-INCDIRS=$(SRCDIRS) ./include
-BUILDDIR=./build
+SRC_DIRS=./src
+INC_DIRS=$(SRC_DIRS) ./include
+BUILD_DIR=./build
 
-BINARY=$(BUILDDIR)/libtt_c_data_structures$(LIB_EXT)
+BINARY=$(BUILD_DIR)/libtt_c_data_structures$(LIB_EXT)
 
-DEPFLAGS=-MD -MD
-CCFLAGS=-Wall -Wextra -g $(DEPFLAGS) $(foreach D,$(INCDIRS),-I$(D))
+DEP_FLAGS=-MD -MD
+CC_FLAGS=-Wall -Wextra -g $(DEP_FLAGS) $(foreach D,$(INC_DIRS),-I$(D))
 
-SRCFILES=$(foreach D,$(SRCDIRS),$(wildcard $(D)/*.c))
-OBJFILES=$(patsubst %.c,%.o,$(SRCFILES))
-DEPFILES=$(patsubst %.c,%.d,$(SRCFILES))
+SRC_FILES=$(foreach D,$(SRC_DIRS),$(wildcard $(D)/*.c))
+OBJ_FILES=$(patsubst %.c,%.o,$(SRC_FILES))
+DEP_FILES=$(patsubst %.c,%.d,$(SRC_FILES))
 
 all:$(BINARY)
 
-$(BINARY):$(OBJFILES)
+$(BINARY):$(OBJ_FILES)
 	$(CC) -shared -o $@ $^
 
 %.o:%.c
-	$(CC) $(CCFLAGS) -c -o $@ $^
+	$(CC) $(CC_FLAGS) -c -o $@ $^
 
 clean:
-	rm -rf $(BINARY) $(OBJFILES) $(DEPFILES)
+	rm -rf $(BINARY) $(OBJ_FILES) $(DEP_FILES)
 
