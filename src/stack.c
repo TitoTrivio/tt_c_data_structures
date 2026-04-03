@@ -5,11 +5,16 @@ bool stack_initialize(Stack *stack, int size)
 {
     if(size < 0)
         return false;
-
-    stack->data = malloc(size * sizeof(void*));
-
-    if(!stack->data)
-        return false;
+    
+    stack->data = NULL;
+    
+    if(size != 0)
+    {
+        stack->data = malloc(size * sizeof(void*));
+        
+        if(!stack->data)
+            return false;
+    }
 
     stack->top = -1;
     stack->size = size;
