@@ -23,7 +23,7 @@ int main(void)
     printf("%s\n", text2);
     printf("%d\n", *number2);
 
-    stack_finalize(&stack);
+    stack_finalize(&stack, true);
     free(text2);
     free(number2);
     

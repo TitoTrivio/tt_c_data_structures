@@ -24,8 +24,8 @@ int main(void)
     printf("%d\n", stack_pop_int(&int_stack));
     printf("%d\n", stack_pop_int(&int_stack));
 
-    stack_finalize(&str_stack);
-    stack_finalize(&int_stack);
+    stack_finalize(&str_stack, false);
+    stack_finalize(&int_stack, true);
     
     return 0;
 }
