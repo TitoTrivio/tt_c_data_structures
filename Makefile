@@ -16,7 +16,7 @@ BUILD_DIR=./build
 
 BINARY=$(BUILD_DIR)/libtt_c_data_structures$(LIB_EXT)
 
-DEP_FLAGS=-MD -MD
+DEP_FLAGS=-MMD -MP
 CC_FLAGS=-Wall -Wextra -g $(DEP_FLAGS) $(foreach D,$(INC_DIRS),-I$(D))
 
 SRC_FILES=$(foreach D,$(SRC_DIRS),$(wildcard $(D)/*.c))
