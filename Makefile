@@ -30,7 +30,9 @@ $(BINARY):$(OBJ_FILES)
 	$(CC) -shared -o $@ $^
 
 %.o:%.c
-	$(CC) $(CC_FLAGS) -c -o $@ $^
+	$(CC) $(CC_FLAGS) -c -o $@ $<
+
+-include $(DEP_FILES)
 
 clean:
 	rm -rf $(BINARY) $(OBJ_FILES) $(DEP_FILES)
