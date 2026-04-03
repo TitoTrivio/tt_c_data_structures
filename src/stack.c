@@ -22,14 +22,14 @@ bool stack_initialize(Stack *stack, int size)
     return true;
 }
 
-void stack_finalize(Stack *stack, bool free_contents)
+void stack_finalize(Stack *stack, bool free_data)
 {
     if(!stack)
         return;
 
     if(stack->data)
     {
-        if(free_contents)
+        if(free_data)
         {
             for(int i = 0; i <= stack->top; i++)
                 free(stack->data[i]);
@@ -56,12 +56,12 @@ Stack *stack_new(int size)
     return stack;
 }
 
-void stack_free(Stack *stack, bool free_contents)
+void stack_free(Stack *stack, bool free_data)
 {
     if(!stack)
         return;
 
-    stack_finalize(stack, free_contents);
+    stack_finalize(stack, free_data);
 
     free(stack);
 }

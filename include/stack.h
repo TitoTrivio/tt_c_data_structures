@@ -16,11 +16,11 @@ typedef struct _Stack Stack;
 
 bool stack_initialize(Stack *stack, int size);
 
-void stack_finalize(Stack *stack, bool free_contents);
+void stack_finalize(Stack *stack, bool free_data);
 
 Stack *stack_new(int size);
 
-void stack_free(Stack *stack, bool free_contents);
+void stack_free(Stack *stack, bool free_data);
 
 /* Stack operations */
 
