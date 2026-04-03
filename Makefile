@@ -1,10 +1,20 @@
+ifneq ($(OS), Windows_NT)
+	OS:=$(shell uname -s)
+endif
+
+ifeq ($(OS), Windows_NT)
+    LIB_EXT=.dll
+else
+    LIB_EXT=.so
+endif
+
 CC=gcc
 
 SRCDIRS=./src
 INCDIRS=$(SRCDIRS) ./include
 BUILDDIR=./build
 
-BINARY=$(BUILDDIR)/libtt_c_data_structures.dll
+BINARY=$(BUILDDIR)/libtt_c_data_structures$(LIB_EXT)
 
 DEPFLAGS=-MD -MD
 CCFLAGS=-Wall -Wextra -g $(DEPFLAGS) $(foreach D,$(INCDIRS),-I$(D))
