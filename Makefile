@@ -26,6 +26,7 @@ DEP_FILES=$(patsubst %.c,%.d,$(SRC_FILES))
 all:$(BINARY)
 
 $(BINARY):$(OBJ_FILES)
+	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	$(CC) -shared -o $@ $^
 
 %.o:%.c
