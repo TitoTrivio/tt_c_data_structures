@@ -17,7 +17,8 @@ BUILD_DIR=./build
 BINARY=$(BUILD_DIR)/libtt_c_data_structures$(LIB_EXT)
 
 DEP_FLAGS=-MMD -MP
-CC_FLAGS=-std=c2x -Wall -Wextra -g $(DEP_FLAGS) $(foreach D,$(INC_DIRS),-I$(D))
+OPT_FLAGS=-O0
+CC_FLAGS=-std=c2x -Wall -Wextra -g $(DEP_FLAGS) $(OPT_FLAGS) $(foreach D,$(INC_DIRS),-I$(D))
 
 SRC_FILES=$(foreach D,$(SRC_DIRS),$(wildcard $(D)/*.c))
 OBJ_FILES=$(patsubst %.c,%.o,$(SRC_FILES))
